@@ -34,6 +34,8 @@ These are the imports that you need for your Jasmine tests. That's it.
 
 - it only traverses one component deep. If component A has a nested component B, and component B has a nested component C, it will only get the imports from component B. A workaround is to run it on component B to get all imports for component C, then just add the imports from component B into component A.
 
+- does not get DI injected dependencies (e.g. in the constructor.) I'm working on this.
+
 - the Python code is probably the worst I've ever written. It does work pretty well though.
 
 - the paths to the repo are hard-coded. Change them in the script before running.
