@@ -87,9 +87,14 @@ def main(filename):
 
         for tag in soup.findChildren():
             for attr in tag.attrs.keys():
-                tmp = extract_selector(selectors, exports, attr)
+                # TODO: hack, automatically import ngmodel using heuristics
+                if (str(attr) == "[(ngmodel)]"):
+                    tmp = ["FormsModule", "BrowserModule"]
+                    # do something
+                else:
+                    tmp = extract_selector(selectors, exports, attr)
                 if tmp is not None:
-                    selectors_to_use.append(tmp)
+                    selectors_to_use.extend(tmp)
         return soup, selectors_to_use
 
     declarations_to_use = []
@@ -122,8 +127,6 @@ def extract_selectors(declarations_to_use, selectors_file_names):
 
 extract_selectors(declarations_to_use, selectors_file_names)
 # TODO: hack, not all components will use the app-component-name -> ComponentName syntax
-print("SELECTORS:")
 print(list(set(final_selectors)))
 print("=======")
-print("DECLARATIONS:")
 print(list(set(final_declarations)))
