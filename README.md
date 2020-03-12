@@ -34,6 +34,8 @@ These are the imports that you need for your Jasmine tests. That's it.
 
 - ~it only traverses one component deep. If component A has a nested component B, and component B has a nested component C, it will only get the imports from component B. A workaround is to run it on component B to get all imports for component C, then just add the imports from component B into component A.~ Now traverses `STACK_SIZE` deep, which should be sufficient for most projects. It will get sub-sub-sub...sub-module imports. Imports and modules must be named app-component-name otherwise it will not recognize it.
 
+- cannot detect tag-property based imports (for example `([ngModel])`)
+
 - does not get DI injected dependencies (e.g. in the constructor.) I'm working on this.
 
 - the Python code is probably the worst I've ever written. It does work pretty well though.
