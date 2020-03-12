@@ -109,8 +109,8 @@ def main(filename):
 selectors_to_use, declarations_to_use, selectors_file_names = main(sys.argv[1])
 
 from stringcase import pascalcase, snakecase, spinalcase
-final_selectors = []
-final_declarations = []
+final_selectors = selectors_to_use
+final_declarations = declarations_to_use
 def extract_selectors(declarations_to_use, selectors_file_names):
     for a_declaration in declarations_to_use:
         selector = 'app-' + spinalcase(a_declaration.replace("Component", ""))
@@ -122,8 +122,8 @@ def extract_selectors(declarations_to_use, selectors_file_names):
 
 extract_selectors(declarations_to_use, selectors_file_names)
 # TODO: hack, not all components will use the app-component-name -> ComponentName syntax
-print("SELECTORS")
+print("SELECTORS:")
 print(list(set(final_selectors)))
 print("=======")
-print("DECLARATIONS")
+print("DECLARATIONS:")
 print(list(set(final_declarations)))
