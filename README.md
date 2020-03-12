@@ -19,13 +19,10 @@ Can't bind to 'value' since it isn't a known property of 'mat-list-option'.
 Well, no more! Simply run `angular-test-no-tears.py path-to-angular-html-file` and you will get an output like the following:
 
 ```
-MatCardModule,
-MatIconModule,
-MatDividerModule,
-MatCheckboxModule,
-MatListModule,
-DECLARATIONS:
-ShuttleSubListComponent,
+python3 angular-test-no-tears.py /mnt/c/Users/yorke/WebstormProjects/Orbital/src/orbital-designer/src/app/components/scenario-editor/add-response/add-response.component.html
+Declarations: ['BrowserModule', 'MatDividerModule', 'MatFormFieldModule', 'MatExpansionModule', 'FormsModule', 'MatIconModule', 'MatCardModule']
+=======
+Imports: ['KvpEditComponent', 'KvpListItemComponent', 'KvpAddComponent']
 ```
 
 These are the imports that you need for your Jasmine tests. That's it.
@@ -34,7 +31,7 @@ These are the imports that you need for your Jasmine tests. That's it.
 
 - ~it only traverses one component deep. If component A has a nested component B, and component B has a nested component C, it will only get the imports from component B. A workaround is to run it on component B to get all imports for component C, then just add the imports from component B into component A.~ Now traverses `STACK_SIZE` deep, which should be sufficient for most projects. It will get sub-sub-sub...sub-module imports. Imports and modules must be named app-component-name otherwise it will not recognize it.
 
-- cannot detect tag-property based imports (for example `([ngModel])`)
+- cannot detect tag-property based imports (for example those in `[square-brackets]`, but can detect `ngModel` (hard-coded.)
 
 - does not get DI injected dependencies (e.g. in the constructor.) I'm working on this.
 
